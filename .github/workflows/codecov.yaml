@@ -1,4 +1,4 @@
-name: codecove
+name: codecov
 
 on: [push]
 
