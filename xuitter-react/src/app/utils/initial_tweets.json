@@ -6,7 +6,7 @@
         "likes": 128,
         "retweets": 42,
         "replies": 15,
-        "is_liked": true,
+        "is_liked": false,
         "is_retweeted": false
     },
     {
@@ -16,8 +16,8 @@
         "likes": 210,
         "retweets": 87,
         "replies": 23,
-        "is_liked": true,
-        "is_retweeted": true
+        "is_liked": false,
+        "is_retweeted": false
     },
     {
         "user_handle": "@sgtpeppersclub",
@@ -36,7 +36,7 @@
         "likes": 350,
         "retweets": 120,
         "replies": 40,
-        "is_liked": true,
+        "is_liked": false,
         "is_retweeted": true
     },
     {
@@ -46,7 +46,7 @@
         "likes": 275,
         "retweets": 98,
         "replies": 34,
-        "is_liked": true,
+        "is_liked": false,
         "is_retweeted": false
     },
     {
@@ -57,7 +57,7 @@
         "retweets": 45,
         "replies": 17,
         "is_liked": false,
-        "is_retweeted": true
+        "is_retweeted": false
     },
     {
         "user_handle": "@george_hfan",
@@ -66,8 +66,8 @@
         "likes": 143,
         "retweets": 36,
         "replies": 10,
-        "is_liked": true,
-        "is_retweeted": true
+        "is_liked": false,
+        "is_retweeted": false
     },
     {
         "user_handle": "@abbeyroadwalks",
@@ -76,7 +76,7 @@
         "likes": 221,
         "retweets": 67,
         "replies": 22,
-        "is_liked": true,
+        "is_liked": false,
         "is_retweeted": false
     },
     {
@@ -96,7 +96,7 @@
         "likes": 160,
         "retweets": 40,
         "replies": 14,
-        "is_liked": true,
+        "is_liked": false,
         "is_retweeted": true
     }
 ]
