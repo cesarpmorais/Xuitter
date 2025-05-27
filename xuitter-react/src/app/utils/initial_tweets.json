@@ -1,0 +1,102 @@
+[
+    {
+        "user_handle": "@johnlennonfan",
+        "content": "‘Strawberry Fields Forever’ is basically a dream you can hear.",
+        "timestamp": "2025-05-27T08:30:00Z",
+        "likes": 128,
+        "retweets": 42,
+        "replies": 15,
+        "is_liked": true,
+        "is_retweeted": false
+    },
+    {
+        "user_handle": "@beatles4ever",
+        "content": "I still can’t believe ‘Norwegian Wood’ was written in 1965. So ahead of its time.",
+        "timestamp": "2025-05-27T09:10:00Z",
+        "likes": 210,
+        "retweets": 87,
+        "replies": 23,
+        "is_liked": true,
+        "is_retweeted": true
+    },
+    {
+        "user_handle": "@sgtpeppersclub",
+        "content": "The transition from ‘Good Morning Good Morning’ into the reprise is pure magic.",
+        "timestamp": "2025-05-27T09:42:00Z",
+        "likes": 94,
+        "retweets": 30,
+        "replies": 12,
+        "is_liked": false,
+        "is_retweeted": false
+    },
+    {
+        "user_handle": "@paulmccbot",
+        "content": "Yesterday... all my xweets seemed so far away 🎶",
+        "timestamp": "2025-05-27T10:03:00Z",
+        "likes": 350,
+        "retweets": 120,
+        "replies": 40,
+        "is_liked": true,
+        "is_retweeted": true
+    },
+    {
+        "user_handle": "@heyjudebot",
+        "content": "Hey Jude, don’t make it bad. Take a xweet and make it better.",
+        "timestamp": "2025-05-27T10:30:00Z",
+        "likes": 275,
+        "retweets": 98,
+        "replies": 34,
+        "is_liked": true,
+        "is_retweeted": false
+    },
+    {
+        "user_handle": "@revolver_riffs",
+        "content": "Revolver is a flawless album. That’s the xweet.",
+        "timestamp": "2025-05-27T11:01:00Z",
+        "likes": 182,
+        "retweets": 45,
+        "replies": 17,
+        "is_liked": false,
+        "is_retweeted": true
+    },
+    {
+        "user_handle": "@george_hfan",
+        "content": "George Harrison’s ‘Isn’t It a Pity’ (solo era) still makes me cry.",
+        "timestamp": "2025-05-27T11:24:00Z",
+        "likes": 143,
+        "retweets": 36,
+        "replies": 10,
+        "is_liked": true,
+        "is_retweeted": true
+    },
+    {
+        "user_handle": "@abbeyroadwalks",
+        "content": "The medley on side B of Abbey Road is the best thing ever put on vinyl.",
+        "timestamp": "2025-05-27T11:57:00Z",
+        "likes": 221,
+        "retweets": 67,
+        "replies": 22,
+        "is_liked": true,
+        "is_retweeted": false
+    },
+    {
+        "user_handle": "@helterskelterbot",
+        "content": "Helter Skelter walked so metal could run 🤘",
+        "timestamp": "2025-05-27T12:13:00Z",
+        "likes": 198,
+        "retweets": 55,
+        "replies": 18,
+        "is_liked": false,
+        "is_retweeted": false
+    },
+    {
+        "user_handle": "@glassoniontruths",
+        "content": "The deeper meaning of ‘Glass Onion’ is that there is no deeper meaning.",
+        "timestamp": "2025-05-27T12:45:00Z",
+        "likes": 160,
+        "retweets": 40,
+        "replies": 14,
+        "is_liked": true,
+        "is_retweeted": true
+    }
+]
