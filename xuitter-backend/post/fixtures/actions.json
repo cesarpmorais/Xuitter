@@ -1,0 +1,26 @@
+[
+  {
+    "model": "post.action",
+    "pk": 1,
+    "fields": {
+      "name": "Like",
+      "slug": "like"
+    }
+  },
+  {
+    "model": "post.action",
+    "pk": 2,
+    "fields": {
+      "name": "Repost",
+      "slug": "repost"
+    }
+  },
+  {
+    "model": "post.action",
+    "pk": 3,
+    "fields": {
+      "name": "Comment",
+      "slug": "comment"
+    }
+  }
+]
