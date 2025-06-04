@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 from user.models import User
 from post.models import Post, Action, PostAction
 
@@ -22,9 +23,23 @@ class PostModelsTestCase(TestCase):
         self.assertIn(self.user.username, str(self.post))
         self.assertIn(str(self.post.created_at.date()), str(self.post))
 
+    def test_post_reply_relationship(self):
+        self.assertEqual(self.reply.origin, self.post)
+        self.assertIn(self.reply, self.post.replies.all())
+
+    def test_post_text_max_length(self):
+        long_text = "a" * 301
+        post = Post(user=self.user, text=long_text)
+        with self.assertRaises(ValidationError):
+            post.full_clean()
+
     def test_action_str(self):
         self.assertEqual(str(self.action_like), "Like")
         self.assertEqual(str(self.action_repost), "Repost")
+
+    def test_action_slug_unique(self):
+        with self.assertRaises(Exception):
+            Action.objects.create(name="Duplicate Like", slug="like")
 
     def test_postaction_str(self):
         post_action = PostAction.objects.create(
@@ -33,16 +48,3 @@ class PostModelsTestCase(TestCase):
         self.assertIn(self.user.username, str(post_action))
         self.assertIn(self.action_like.name, str(post_action))
         self.assertIn(str(self.post.id), str(post_action))
-
-    def test_post_reply_relationship(self):
-        self.assertEqual(self.reply.origin, self.post)
-        self.assertIn(self.reply, self.post.replies.all())
-
-    def test_post_text_max_length(self):
-        long_text = "a" * 301
-        with self.assertRaises(Exception):
-            Post.objects.create(user=self.user, text=long_text)
-
-    def test_action_slug_unique(self):
-        with self.assertRaises(Exception):
-            Action.objects.create(name="Duplicate Like", slug="like")

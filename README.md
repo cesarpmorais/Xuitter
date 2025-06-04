@@ -41,6 +41,8 @@ Matheus Grandinetti - 2021067496
 - **npm concurrently**  
   Pacote Node.js que permite rodar múltiplos comandos (como frontend e backend) simultaneamente durante o desenvolvimento.
 
+## Aprendizados
+
 ## Executando o projeto
 Usamos o pacote `npm concurrently` para tornar o processo de deploy o mais simples possível. Para executar tanto o frontend quanto o backend:
 ```
@@ -49,7 +51,7 @@ npm run setup-backend
 npm run dev
 ```
 
-## Backend
+### Backend
 ### 1. Instalar dependências do projeto
 `pip install -r requirements.txt`
 
