@@ -1,8 +1,26 @@
-import initial_tweets from "../utils/initial_tweets.json";
+import { useEffect, useState } from "react";
 import { Sidebar } from "../components/sidebar";
 import { Tweet } from "../components/tweet";
+import { fetchFeed } from "../api/tweetsApi";
 
 export const Feed = () => {
+    const [tweets, setTweets] = useState<any[]>([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            window.location.href = "/login";
+            return;
+        }
+
+        async function fetchTweets() {
+            const tweets = await fetchFeed(token as string);
+            setTweets(tweets);
+        }
+
+        fetchTweets();
+    }, []);
+
     return (
         <div className="grid grid-cols-[280px_1fr_350px] min-h-screen w-full bg-white text-black dark:bg-black dark:text-white">
             <Sidebar />
@@ -21,8 +39,8 @@ export const Feed = () => {
                 </div>
 
                 <div className="flex flex-col gap-6">
-                    {initial_tweets.map((tweet: any, index: any) => (
-                        <Tweet key={index} {...tweet} />
+                    {tweets.map((tweet, idx) => (
+                        <Tweet key={idx} {...tweet} />
                     ))}
                 </div>
             </main>

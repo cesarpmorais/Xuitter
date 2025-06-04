@@ -14,4 +14,7 @@ python3 manage.py loaddata user/fixtures/users.json
 printf "\nLoading contact fixtures...\n"
 python3 manage.py loaddata user/fixtures/contacts.json
 
+printf "\nLoading initial tweets...\n"
+python3 manage.py loaddata post/fixtures/posts.json
+
 printf "\nFixture loading finished, enjoy!\n"

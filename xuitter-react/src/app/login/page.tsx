@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { login } from "../api/backendApi";
+import { login } from "../api/userApi";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {

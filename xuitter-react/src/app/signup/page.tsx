@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signup } from "../api/backendApi";
+import { signup } from "../api/userApi";
 
 
 export default function SignupForm() {
