@@ -4,6 +4,7 @@ import { Tweet } from "../components/tweet";
 import { Sidebar } from "../components/sidebar";
 import { fetchFeed } from "../api/tweetsApi";
 import { useEffect, useState } from "react";
+import { logout } from "../api/userApi";
 
 export default function ProfilePage() {
     const defaultAvatar = "/xuitter_photo.jpg";
@@ -35,7 +36,11 @@ export default function ProfilePage() {
         }
     }, []);
 
-    function handleLogout() {
+    async function handleLogout() {
+        await logout(
+            localStorage.getItem("access_token") || "",
+            localStorage.getItem("refresh_token") || ""
+        );
         localStorage.clear();
         window.location.href = "/login";
     }
