@@ -17,14 +17,14 @@ export async function fetchFeed(token: string) {
     return res.json();
 }
 
-export async function postTweet(message: string, token: string,) {
+export async function postTweet(message: string, token: string, origin?: string) {
     const res = await fetch(`${API_URL}/post/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({ "text": message }),
+        body: JSON.stringify({ "text": message, "origin": origin }),
     });
 
     if (!res.ok) {

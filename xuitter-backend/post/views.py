@@ -107,6 +107,6 @@ class FeedView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        feed_posts = Post.objects.order_by("-created_at")
+        feed_posts = Post.objects.filter(origin__isnull=True).order_by("-created_at")
         serializer = PostSerializer(feed_posts, many=True, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)

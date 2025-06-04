@@ -5,12 +5,13 @@ from post.models import Action, Post, PostAction
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source="user.username", read_only=True)
-    likes = serializers.SerializerMethodField()
-    retweets = serializers.SerializerMethodField()
-    replies = serializers.SerializerMethodField()
+    likes_count = serializers.SerializerMethodField()
+    retweets_count = serializers.SerializerMethodField()
+    replies_count = serializers.SerializerMethodField()
     isLiked = serializers.SerializerMethodField()
     isReposted = serializers.SerializerMethodField()
     isCommented = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -20,22 +21,27 @@ class PostSerializer(serializers.ModelSerializer):
             "text",
             "origin",
             "created_at",
-            "likes",
-            "retweets",
             "replies",
+            "likes_count",
+            "retweets_count",
+            "replies_count",
             "isLiked",
             "isReposted",
             "isCommented",
         ]
         read_only_fields = ["id", "created_at"]
 
-    def get_likes(self, obj):
+    def get_replies(self, obj):
+        replies_qs = Post.objects.filter(origin=obj).order_by("created_at")
+        return PostSerializer(replies_qs, many=True, context=self.context).data
+
+    def get_likes_count(self, obj):
         return PostAction.objects.filter(post=obj, action__slug="like").count()
 
-    def get_retweets(self, obj):
+    def get_retweets_count(self, obj):
         return PostAction.objects.filter(post=obj, action__slug="repost").count()
 
-    def get_replies(self, obj):
+    def get_replies_count(self, obj):
         return PostAction.objects.filter(post=obj, action__slug="comment").count()
 
     def get_isLiked(self, obj):
