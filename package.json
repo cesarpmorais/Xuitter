@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "concurrently \"python3 xuitter-backend/manage.py runserver\" \"cd xuitter-react && npm run dev\"",
-        "setup-backend": "pip install -r requirements.txt && python3 xuitter-backend/manage.py migrate && bash load_fixtures.sh"
+        "setup-backend": "pip install -r requirements.txt && python3 xuitter-backend/manage.py migrate && cd xuitter-backend && bash load_fixtures.sh"
     },
     "devDependencies": {
         "concurrently": "^8.2.2"
