@@ -9,6 +9,9 @@ type TweetProps = {
     likes?: number;
     retweets?: number;
     replies?: number;
+    isLiked?: boolean;
+    isReposted?: boolean;
+    isCommented?: boolean;
     isProfilePageTweet?: boolean;
 };
 
@@ -20,11 +23,16 @@ export const Tweet = ({
     likes = 0,
     retweets = 0,
     replies = 0,
+    isLiked = false,
+    isReposted = false,
+    isCommented = false,
     isProfilePageTweet = false,
 }: TweetProps) => {
     const [localLikes, setLocalLikes] = useState(likes);
     const [localRetweets, setLocalRetweets] = useState(retweets);
     const [localReplies, setLocalReplies] = useState(replies);
+    const [liked, setLiked] = useState(isLiked);
+    const [reposted, setReposted] = useState(isReposted);
 
     async function handleAction(action: TweetAction) {
         const token = localStorage.getItem("access_token");
@@ -34,9 +42,17 @@ export const Tweet = ({
         }
         try {
             await actionTweet(id, action, token);
-            if (action === "like") setLocalLikes((v) => v + 1);
-            if (action === "repost") setLocalRetweets((v) => v + 1);
-            if (action === "comment") setLocalReplies((v) => v + 1);
+            if (action === "like") {
+                setLocalLikes((v) => liked ? v - 1 : v + 1);
+                setLiked((prev) => !prev);
+            }
+            if (action === "repost") {
+                setLocalRetweets((v) => reposted ? v - 1 : v + 1);
+                setReposted((prev) => !prev);
+            }
+            if (action === "comment") {
+                setLocalReplies((v) => v + 1);
+            }
         } catch (err) {
             alert("Erro ao executar ação.");
         }

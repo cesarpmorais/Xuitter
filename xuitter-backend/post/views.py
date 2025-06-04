@@ -59,6 +59,42 @@ class PostActionView(APIView):
     def post(self, request, pk):
         data = request.data.copy()
         data["post"] = pk
+        action_slug = data.get("action")
+        user = request.user
+        post = get_object_or_404(Post, pk=pk)
+
+        if action_slug == "like" or action_slug == "repost":
+            existing = PostAction.objects.filter(
+                user=user, post_id=pk, action__slug="like"
+            )
+            if existing.exists():
+                existing.delete()
+                return Response({"detail": "Like removed."}, status=status.HTTP_200_OK)
+
+        # elif action_slug == "repost":
+        #     existing_action = PostAction.objects.filter(
+        #         user=user, post_id=pk, action__slug="repost"
+        #     )
+        #     if existing_action.exists():
+        #         reposted_post = Post.objects.filter(user=user, origin=post)
+        #         reposted_post.delete()
+        #         existing_action.delete()
+        #         return Response(
+        #             {"detail": "Repost removed."}, status=status.HTTP_200_OK
+        #         )
+        #     else:
+        #         repost_text = f"Reposted from {post.user.username}: {post.text}"
+        #         reposted_post = Post.objects.create(
+        #             user=user,
+        #             text=repost_text,
+        #             origin=post,
+        #         )
+        #         PostAction.objects.create(
+        #             user=user,
+        #             post=reposted_post,
+        #             action=Action.objects.get(slug="repost"),
+        #         )
+        #         return Response({"detail": "Reposted."}, status=status.HTTP_201_CREATED)
 
         serializer = PostActionSerializer(data=data, context={"request": request})
         if serializer.is_valid():

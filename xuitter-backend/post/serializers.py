@@ -8,6 +8,9 @@ class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     retweets = serializers.SerializerMethodField()
     replies = serializers.SerializerMethodField()
+    isLiked = serializers.SerializerMethodField()
+    isReposted = serializers.SerializerMethodField()
+    isCommented = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -20,6 +23,9 @@ class PostSerializer(serializers.ModelSerializer):
             "likes",
             "retweets",
             "replies",
+            "isLiked",
+            "isReposted",
+            "isCommented",
         ]
         read_only_fields = ["id", "created_at"]
 
@@ -31,6 +37,30 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_replies(self, obj):
         return PostAction.objects.filter(post=obj, action__slug="comment").count()
+
+    def get_isLiked(self, obj):
+        user = self.context.get("request").user
+        if user.is_authenticated:
+            return PostAction.objects.filter(
+                post=obj, user=user, action__slug="like"
+            ).exists()
+        return False
+
+    def get_isReposted(self, obj):
+        user = self.context.get("request").user
+        if user.is_authenticated:
+            return PostAction.objects.filter(
+                post=obj, user=user, action__slug="repost"
+            ).exists()
+        return False
+
+    def get_isCommented(self, obj):
+        user = self.context.get("request").user
+        if user.is_authenticated:
+            return PostAction.objects.filter(
+                post=obj, user=user, action__slug="comment"
+            ).exists()
+        return False
 
 
 class PostActionSerializer(serializers.ModelSerializer):
