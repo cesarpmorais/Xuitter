@@ -1,4 +1,8 @@
+import { useState } from "react";
+import { actionTweet, TweetAction } from "../api/tweetsApi";
+
 type TweetProps = {
+    id: number;
     text: string;
     created_at: string;
     user: string;
@@ -9,6 +13,7 @@ type TweetProps = {
 };
 
 export const Tweet = ({
+    id,
     text,
     created_at,
     user,
@@ -17,6 +22,26 @@ export const Tweet = ({
     replies = 0,
     isProfilePageTweet = false,
 }: TweetProps) => {
+    const [localLikes, setLocalLikes] = useState(likes);
+    const [localRetweets, setLocalRetweets] = useState(retweets);
+    const [localReplies, setLocalReplies] = useState(replies);
+
+    async function handleAction(action: TweetAction) {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            alert("Faça login para interagir.");
+            return;
+        }
+        try {
+            await actionTweet(id, action, token);
+            if (action === "like") setLocalLikes((v) => v + 1);
+            if (action === "repost") setLocalRetweets((v) => v + 1);
+            if (action === "comment") setLocalReplies((v) => v + 1);
+        } catch (err) {
+            alert("Erro ao executar ação.");
+        }
+    }
+
     return (
         <div className="border-b border-gray-200 dark:border-gray-800 pb-4">
             <div className="flex justify-between items-center mb-1">
@@ -31,9 +56,15 @@ export const Tweet = ({
             </div>
             <p className="mb-2">{text}</p>
             <div className="flex gap-4 text-sm text-gray-600 dark:text-gray-300">
-                <span>❤️ {likes}</span>
-                <span>🔁 {retweets}</span>
-                <span>💬 {replies}</span>
+                <button onClick={() => handleAction("like")} className="hover:text-red-500 transition">
+                    ❤️ {localLikes}
+                </button>
+                <button onClick={() => handleAction("repost")} className="hover:text-green-500 transition">
+                    🔁 {localRetweets}
+                </button>
+                <button onClick={() => handleAction("comment")} className="hover:text-blue-500 transition">
+                    💬 {localReplies}
+                </button>
             </div>
         </div>
     );
