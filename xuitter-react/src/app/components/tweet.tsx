@@ -1,30 +1,30 @@
 type TweetProps = {
-    id: number;
     text: string;
     created_at: string;
     user: string;
     likes?: number;
     retweets?: number;
     replies?: number;
+    isProfilePageTweet?: boolean;
 };
 
 export const Tweet = ({
-    id,
     text,
     created_at,
     user,
     likes = 0,
     retweets = 0,
     replies = 0,
+    isProfilePageTweet = false,
 }: TweetProps) => {
     return (
         <div className="border-b border-gray-200 dark:border-gray-800 pb-4">
             <div className="flex justify-between items-center mb-1">
-                <div>
+                {!isProfilePageTweet && (<div>
                     <p className="font-semibold text-lg">
                         {user}
                     </p>
-                </div>
+                </div>)}
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                     {new Date(created_at).toLocaleString()}
                 </p>

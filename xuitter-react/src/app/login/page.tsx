@@ -20,6 +20,8 @@ export default function LoginForm() {
         try {
             const response = await login({ email, password });
             localStorage.setItem("access_token", response.access);
+            localStorage.setItem("user_name", response.user.username);
+            localStorage.setItem("user_email", response.user.email);
             set_success(true);
             router.push("/");
         } catch (err) {
