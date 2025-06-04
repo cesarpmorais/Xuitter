@@ -1,5 +1,13 @@
 # Xuitter
 
+## Running the project
+We've used 'npm concurrently' to make the deploy process as simple as possible. To run both frontend and backend:
+```
+npm install -D concurrently
+npm run setup-backend
+npm run dev
+```
+
 ## Backend
 This is the backend for **Xuitter**, a minimalist Twitter-like platform built with Django and Django REST Framework. It allows users to post content, like, repost, comment, and retrieve interaction statistics.
 
