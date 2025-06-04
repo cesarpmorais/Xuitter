@@ -43,6 +43,12 @@ Matheus Grandinetti - 2021067496
 
 ## Aprendizados
 
+O desenvolvimento do Xuitter evidenciou a importância dos testes automatizados e da integração contínua (CI) para garantir a qualidade e a robustez do sistema. A alta cobertura de testes, aliada ao uso de ferramentas como Github Actions e Codecov, facilitou a identificação rápida de falhas e incentivou a escrita de código mais seguro.
+
+A separação clara entre backend (Django/DRF) e frontend (React/TypeScript) mostrou-se fundamental para a organização, escalabilidade e colaboração no projeto. No backend, a construção de APIs RESTful e a serialização de dados proporcionaram experiência prática em expor informações de forma eficiente e segura. Também foi essencial compreender e aplicar boas práticas de autenticação moderna com JWT, utilizando access e refresh tokens.
+
+Por fim, o projeto proporcionou uma vivência completa de desenvolvimento fullstack moderno, integrando tecnologias atuais do mercado e reforçando a importância de boas práticas em todas as etapas do desenvolvimento.
+
 ## Executando o projeto
 Usamos o pacote `npm concurrently` para tornar o processo de deploy o mais simples possível. Para executar tanto o frontend quanto o backend:
 ```
