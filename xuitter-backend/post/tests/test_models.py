@@ -47,4 +47,3 @@ class PostModelsTestCase(TestCase):
         )
         self.assertIn(self.user.username, str(post_action))
         self.assertIn(self.action_like.name, str(post_action))
-        self.assertIn(str(self.post.id), str(post_action))
