@@ -218,3 +218,34 @@ class PostActionTestCase(TestCase):
         self.assertEqual(data['like'], 4)
         self.assertEqual(data['repost'], 4)
         self.assertEqual(data['comment'], 4)
+
+class FeedTestCase(TestCase):
+    fixtures = ['users.json', 'contacts.json', 'posts.json']
+    
+    def setUp(self):
+        self.client = Client()
+        self.user1 = User.objects.get(pk=1)
+        self.user2 = User.objects.get(pk=4)
+        
+    def test_get_feed_posts(self):
+        response = self.client.get(
+            reverse('feed'),
+            **authenticate(self.user1)
+        )
+        posts = json.loads(response.content)
+        self.assertEquals(len(posts), 7)
+        
+        for post in posts:
+            self.assertIn('post_id', post)
+            self.assertIn('user_id', post)
+            self.assertIn('origin', post)
+            self.assertIn('created_at', post)
+            self.assertIn('content', post)
+    
+    def test_get_feed_with_no_posts(self):
+        response = self.client.get(
+            reverse('feed'),
+            **authenticate(self.user2)
+        )
+        posts = json.loads(response.content)
+        self.assertEquals(len(posts), 0)
