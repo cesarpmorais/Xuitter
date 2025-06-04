@@ -50,7 +50,14 @@ export const Tweet = ({
         }
         try {
             await actionTweet(id, action, token);
-            window.location.reload();
+            if (action === "like") {
+                setLiked((prev) => !prev);
+                setLocalLikes((prev) => prev + (liked ? -1 : 1));
+            }
+            else if (action === "repost") {
+                setReposted((prev) => !prev);
+                setLocalRetweets((prev) => prev + (reposted ? -1 : 1));
+            }
         } catch (err) {
             alert("Erro ao executar ação.");
         }
