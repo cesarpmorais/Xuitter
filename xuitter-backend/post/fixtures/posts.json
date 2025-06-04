@@ -1,0 +1,102 @@
+[
+  {
+    "model": "post.post",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "text": "Primeiro post do User1.",
+      "origin": null,
+      "created_at": "2025-06-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "text": "Post interessante do User2.",
+      "origin": null,
+      "created_at": "2025-06-01T10:05:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "text": "Bom dia! Aqui é o User3.",
+      "origin": null,
+      "created_at": "2025-06-01T10:10:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "text": "User4 chegando com novidades!",
+      "origin": null,
+      "created_at": "2025-06-01T10:15:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "text": "Outro post do User1 sobre tecnologia.",
+      "origin": null,
+      "created_at": "2025-06-01T10:20:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "text": "User2 comentando sobre o tempo hoje.",
+      "origin": null,
+      "created_at": "2025-06-01T10:25:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "text": "Mais um dia, mais um post do User3.",
+      "origin": null,
+      "created_at": "2025-06-01T10:30:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 8,
+    "fields": {
+      "user": 4,
+      "text": "Curtam e compartilhem esse post do User4!",
+      "origin": null,
+      "created_at": "2025-06-01T10:35:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 9,
+    "fields": {
+      "user": 1,
+      "text": "User1 reflexivo: pensamentos aleatórios.",
+      "origin": null,
+      "created_at": "2025-06-01T10:40:00Z"
+    }
+  },
+  {
+    "model": "post.post",
+    "pk": 10,
+    "fields": {
+      "user": 2,
+      "text": "User2 encerrando a rodada de posts.",
+      "origin": null,
+      "created_at": "2025-06-01T10:45:00Z"
+    }
+  }
+]
