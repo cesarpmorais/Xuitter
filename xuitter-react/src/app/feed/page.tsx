@@ -1,6 +1,6 @@
 import initial_tweets from "../utils/initial_tweets.json";
-import { Sidebar } from "./sidebar";
-import { Tweet } from "./tweet";
+import { Sidebar } from "../components/sidebar";
+import { Tweet } from "../components/tweet";
 
 export const Feed = () => {
     return (

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Sidebar } from "./components/sidebar";
-import { Feed } from "./components/feed";
+import { Feed } from "./feed/page";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
