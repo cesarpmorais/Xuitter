@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
@@ -7,6 +8,7 @@ from rest_framework.views import APIView
 
 from post.models import Action, Post, PostAction
 from post.serializers import PostSerializer, PostActionSerializer
+from user.models import Contact
 
 class PostView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -40,6 +42,8 @@ class PostView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PostActionView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
         counts = (
@@ -60,3 +64,22 @@ class PostActionView(APIView):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class FeedView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        followed_accounts = [
+            contact.user2 for contact in 
+            Contact.objects.filter(user1=request.user)
+        ]
+        feed_posts = Post.objects.filter(user__in=followed_accounts).order_by("-created_at")
+        response = [{
+            "post_id": post.id,
+            "user_id": post.user.id, 
+            "origin": post.origin, 
+            "created_at": post.created_at, 
+            "content": post.text
+        } for post in feed_posts]
+        return Response(response, status=status.HTTP_200_OK)
+        
