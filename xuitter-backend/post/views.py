@@ -19,7 +19,7 @@ class PostView(APIView):
         if serializer.is_valid():
             serializer.save(user=request.user)
 
-            origin_id = request.data["origin"]
+            origin_id = request.data.get("origin")
             if origin_id:
                 PostAction.objects.create(
                     user=request.user,

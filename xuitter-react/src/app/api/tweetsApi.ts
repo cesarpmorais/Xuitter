@@ -15,3 +15,20 @@ export async function fetchFeed(token: string) {
     }
     return res.json();
 }
+
+export async function postTweet(message: string, token: string,) {
+    const res = await fetch(`${API_URL}/post/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ "text": message }),
+    });
+
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(JSON.stringify(errorData));
+    }
+    return res.json();
+}
