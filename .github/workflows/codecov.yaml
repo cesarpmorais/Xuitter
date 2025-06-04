@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   test_and_upload_coverage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v4
@@ -35,6 +35,7 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         verbose: true
-        working-directory: ./xuitter-backend
+        files: ./xuitter-backend/coverage.xml
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        
