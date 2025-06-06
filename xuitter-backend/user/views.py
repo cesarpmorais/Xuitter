@@ -1,11 +1,13 @@
+from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-from user.serializer import SignupSerializer, LoginSerializer
-
+from user.serializer import ContactSerializer, SignupSerializer, LoginSerializer
+from user.models import Contact
 
 class SignupView(APIView):
     permission_classes = [AllowAny]
@@ -69,3 +71,33 @@ class LogoutView(APIView):
                 {"detail": "Invalid or non-blacklistable token."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+class ContactView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, user_pk):
+        contacts = Contact.objects.filter(user1__pk=user_pk)
+        serializer = ContactSerializer(contacts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, user_pk):
+        serializer = ContactSerializer(data=request.data, context={"request": request})
+
+        if serializer.is_valid():
+            try:
+                contact = serializer.save()
+                return Response(
+                    ContactSerializer(contact).data, status=status.HTTP_201_CREATED
+                )
+            except ValidationError as e:
+                return Response(
+                    {"errors": e.messages}, status=status.HTTP_400_BAD_REQUEST
+                )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, user_pk):
+        contact = get_object_or_404(
+            Contact, user1_id=request.user.id, user2=request.data["user2"]
+        )
+        contact.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

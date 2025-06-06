@@ -64,7 +64,7 @@ class PostActionView(APIView):
         post = get_object_or_404(Post, pk=pk)
 
         if action_slug != "comment":
-            existing = PostAction.objects.get(
+            existing = PostAction.objects.filter(
                 user=user, post_id=pk, action__slug=action_slug
             )
             if existing.exists():

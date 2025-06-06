@@ -1,10 +1,11 @@
 import json
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.test import APIClient, APITestCase
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from user.models import User
+from user.models import Contact, User
 
 
 class AuthTestCase(TestCase):
@@ -133,3 +134,71 @@ class AuthTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("detail", response.data)
         self.assertEqual(response.data["detail"], "Invalid or non-blacklistable token.")
+
+class ContactTestCase(APITestCase):
+    fixtures = ["users.json", "contacts.json"]
+
+    def setUp(self):
+        self.user = User.objects.get(pk=2)
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.user)
+
+    def test_get_user_followed_contacts(self):
+        response = self.client.get(
+            reverse("user-contacts", args=[self.user.pk]), format="json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        user_contacts = Contact.objects.filter(user1=self.user)
+        self.assertEqual(len(user_contacts), len(response.data))
+
+    def test_create_contact(self):
+        contact_data = {"user2": 3}
+        response = self.client.post(
+            reverse("user-contacts", args=[self.user.pk]),
+            data=contact_data,
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        contact = Contact.objects.get(id=response.data["id"])
+        self.assertEqual(contact.user1.pk, response.data["follower"])
+        self.assertEqual(contact.user2.pk, response.data["followed"])
+
+    def test_create_user_with_invalid_data(self):
+        contact_data = {}
+        response = self.client.post(
+            reverse("user-contacts", args=[self.user.pk]),
+            data=contact_data,
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_same_user_contact(self):
+        contact_data = {"user2": 2}
+        response = self.client.post(
+            reverse("user-contacts", args=[self.user.pk]),
+            data=contact_data,
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("errors", response.data)
+
+    def test_delete_contact(self):
+        delete_contact_data = {"user2": 1}
+        response = self.client.delete(
+            reverse("user-contacts", args=[self.user.pk]),
+            data=delete_contact_data,
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(
+            Contact.objects.filter(user1_id=self.user.id, user2_id=1).exists()
+        )
+
+    def test_delete_non_existing_contact(self):
+        delete_contact_data = {"user2": 3}
+        response = self.client.delete(
+            reverse("user-contacts", args=[self.user.pk]),
+            data=delete_contact_data,
+            format="json",
+        )
+        self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
