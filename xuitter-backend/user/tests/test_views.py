@@ -201,4 +201,4 @@ class ContactTestCase(APITestCase):
             data=delete_contact_data,
             format="json",
         )
-        self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
