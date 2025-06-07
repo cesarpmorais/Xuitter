@@ -58,6 +58,8 @@ npm run dev
 ```
 
 ### Backend
+Dentro da pasta xuitter-backend...
+
 ### 1. Instalar dependências do projeto
 `pip install -r requirements.txt`
 
