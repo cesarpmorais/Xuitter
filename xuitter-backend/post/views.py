@@ -69,21 +69,19 @@ class PostActionView(APIView):
             )
             if existing.exists():
                 existing.delete()
-                return Response({"detail": f"{action_slug} removed."}, status=status.HTTP_204_NO_CONTENT)
-            elif action_slug == "respost":
-                repost_text = f"Reposted from {user.username}: {post.text}"
-                Post.objects.create(
-                    user=user,
-                    origin=post,
-                    text=repost_text
+                return Response(
+                    {"detail": f"{action_slug} removed."}, status=status.HTTP_200_OK
                 )
+            elif action_slug == "repost":
+                repost_text = f"Reposted from {post.user.username}: {post.text}"
+                Post.objects.create(user=user, text=repost_text)
 
         serializer = PostActionSerializer(data=data, context={"request": request})
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
 
 class FeedView(APIView):
     permission_classes = [permissions.IsAuthenticated]
