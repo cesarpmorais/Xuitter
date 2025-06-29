@@ -18,7 +18,7 @@ def authenticate(user):
 
 
 class PostTestCase(TestCase):
-    fixtures = ["actions.json", "users.json"]
+    fixtures = ["addresses.json", "actions.json", "users.json"]
 
     def setUp(self):
         self.client = Client()
@@ -80,7 +80,7 @@ class PostTestCase(TestCase):
 
 
 class PostActionTestCase(TestCase):
-    fixtures = ["actions.json", "users.json"]
+    fixtures = ["addresses.json", "actions.json", "users.json"]
 
     def setUp(self):
         self.client = Client()
@@ -205,7 +205,7 @@ class PostActionTestCase(TestCase):
 
 
 class FeedTestCase(TestCase):
-    fixtures = ["users.json", "contacts.json", "posts.json"]
+    fixtures = ["addresses.json", "users.json", "contacts.json", "posts.json"]
 
     def setUp(self):
         self.client = Client()

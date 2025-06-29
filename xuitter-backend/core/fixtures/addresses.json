@@ -3,56 +3,56 @@
     "model": "core.address",
     "pk": 1,
     "fields": {
-      "country": "Brasil",
-      "state": "MG",
-      "city": "Belo Horizonte",
-      "neighborhood": "Savassi",
-      "street": "Rua Pernambuco",
-      "number": "123",
-      "complement": "Apto 101",
-      "postal_code": "30130-150"
+      "country": "United States",
+      "state": "Bikini Bottom",
+      "city": "Pacific Ocean",
+      "neighborhood": "Kelp Forest",
+      "street": "Conch Street",
+      "number": "831",
+      "complement": "Under the sea",
+      "postal_code": "00001"
     }
   },
   {
     "model": "core.address",
     "pk": 2,
     "fields": {
-      "country": "Brasil",
-      "state": "SP",
-      "city": "São Paulo",
-      "neighborhood": "Pinheiros",
-      "street": "Rua dos Pinheiros",
-      "number": "456",
-      "complement": "",
-      "postal_code": "05422-000"
+      "country": "United States",
+      "state": "New York",
+      "city": "New York",
+      "neighborhood": "Upper West Side",
+      "street": "W 105th St",
+      "number": "245",
+      "complement": "Near MacLaren's Bar",
+      "postal_code": "10025"
     }
   },
   {
     "model": "core.address",
     "pk": 3,
     "fields": {
-      "country": "Brasil",
-      "state": "RJ",
-      "city": "Rio de Janeiro",
-      "neighborhood": "Copacabana",
-      "street": "Avenida Atlântica",
-      "number": "789",
-      "complement": "Bloco B",
-      "postal_code": "22021-001"
+      "country": "Westeros",
+      "state": "The North",
+      "city": "The Wall",
+      "neighborhood": "Castle Black",
+      "street": "Castle Black Main Gate",
+      "number": "1",
+      "complement": "Headquarters of the Night's Watch",
+      "postal_code": "NW001"
     }
   },
   {
     "model": "core.address",
     "pk": 4,
     "fields": {
-      "country": "Brasil",
-      "state": "RS",
-      "city": "Porto Alegre",
-      "neighborhood": "Moinhos de Vento",
-      "street": "Rua Padre Chagas",
-      "number": "321",
-      "complement": "Sala 202",
-      "postal_code": "90570-080"
+      "country": "United States",
+      "state": "Wyoming",
+      "city": "Jackson",
+      "neighborhood": "Jackson Hole",
+      "street": "Jackson Town Square",
+      "number": "10",
+      "complement": "Near the Fireflies HQ",
+      "postal_code": "83001"
     }
   }
 ]
