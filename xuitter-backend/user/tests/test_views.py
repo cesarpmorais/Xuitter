@@ -136,7 +136,7 @@ class AuthTestCase(TestCase):
         self.assertEqual(response.data["detail"], "Invalid or non-blacklistable token.")
 
 class ContactTestCase(APITestCase):
-    fixtures = ["users.json", "contacts.json"]
+    fixtures = ["addresses.json", "users.json", "contacts.json"]
 
     def setUp(self):
         self.user = User.objects.get(pk=2)
