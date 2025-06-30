@@ -18,7 +18,7 @@ Matheus Grandinetti - 2021067496
   Framework web Python robusto, utilizado para construir o backend da aplicação, incluindo autenticação, modelos de dados e administração.
 
 - **Django REST Framework (DRF)**  
-  Extensão do Django para criação de APIs RESTful. Permite serialização de dados, autenticação via token e construção de endpoints para o frontend consumir.
+  Extensão do Django para criação de APIs RESTful. Permite serialização de dados, autenticação via token, testes e construção de endpoints para o frontend consumir.
 
 - **React**  
   Biblioteca JavaScript para construção de interfaces de usuário reativas e componentizadas. Utilizada para o frontend do Xuitter.
@@ -28,9 +28,6 @@ Matheus Grandinetti - 2021067496
 
 - **SQLite**  
   Banco de dados relacional leve, utilizado como padrão no desenvolvimento do backend Django.
-
-- **pytest**  
-  Framework de testes para Python, utilizado para garantir a qualidade e cobertura dos testes no backend.
 
 - **Github Actions**  
   Ferramenta de integração contínua (CI) para rodar testes automaticamente em diferentes sistemas operacionais e versões do Python a cada push ou pull request.
